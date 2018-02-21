@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Text;
 
 namespace TCMB.Helper
 {
@@ -10,7 +11,7 @@ namespace TCMB.Helper
 
             try
             {
-                result = new WebClient().DownloadString(url);
+                result = new WebClient(){Encoding = Encoding.UTF8}.DownloadString(url);
             }
             catch
             {

@@ -12,7 +12,7 @@ namespace TCMB.Web
             Task.Factory.StartNew(() =>
             {
                 Thread.CurrentThread.IsBackground = true;
-                TCMB.Helper.InvokeHelper.ObjectInvoke(new RequestHandler(), methodName, parameters);
+                TCMB.Helper.InvokeHelper.ObjectInvoke(new RequestHandler() { ConnectionID = Context.ConnectionId }, methodName, parameters);
             });
         }
 

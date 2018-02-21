@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Microsoft.AspNet.SignalR;
@@ -12,9 +13,14 @@ namespace TCMB.Web
     {
         protected void Application_Start()
         {
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
+            System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
+            customCulture.NumberFormat.NumberDecimalSeparator = ".";
+
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
+            DTO.Global.SQLConnectionString = Helper.DatabaseHelper.BuildConnectionString("185.40.86.73", false, "TcmbExchangeRates", "test", "Test123456!");
             WebApp.Start<Startup>("http://localhost:8080");
         }
 
@@ -22,33 +28,16 @@ namespace TCMB.Web
         {
             public void Configuration(IAppBuilder app)
             {
-                //app.UseCors(CorsOptions.AllowAll);
-                //app.MapSignalR(new HubConfiguration()
-                //{
-                //    EnableJSONP = true,
-
-                //});
-                // Branch the pipeline here for requests that start with "/signalr"
                 app.Map("/signalr", map =>
                 {
-                    // Setup the CORS middleware to run before SignalR.
-                    // By default this will allow all origins. You can 
-                    // configure the set of origins and/or http verbs by
-                    // providing a cors options with a different policy.
                     map.UseCors(CorsOptions.AllowAll);
 
                     HubConfiguration hubConfiguration = new HubConfiguration
                     {
-                        // You can enable JSONP by uncommenting line below.
-                        // JSONP requests are insecure but some older browsers (and some
-                        // versions of IE) require JSONP to work cross domain
                         EnableJSONP = true,
                         EnableDetailedErrors = true
                     };
-
-                    // Run the SignalR pipeline. We're not using MapSignalR
-                    // since this branch already runs under the "/signalr"
-                    // path.
+                    
                     map.RunSignalR(hubConfiguration);
                 });
 
@@ -56,6 +45,5 @@ namespace TCMB.Web
                 GlobalHost.Configuration.MaxIncomingWebSocketMessageSize = int.MaxValue;
             }
         }
-
     }
 }

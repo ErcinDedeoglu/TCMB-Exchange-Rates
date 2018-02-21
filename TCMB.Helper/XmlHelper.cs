@@ -31,9 +31,9 @@ namespace TCMB.Helper
                     read.Close();
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                //Log exception here
+                // ignored
             }
 
             return objectOut;

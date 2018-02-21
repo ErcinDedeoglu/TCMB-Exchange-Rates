@@ -40,6 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseHelper.cs" />
+    <Compile Include="DateHelper.cs" />
+    <Compile Include="ConvertHelper.cs" />
     <Compile Include="InvokeHelper.cs" />
     <Compile Include="WebClientHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

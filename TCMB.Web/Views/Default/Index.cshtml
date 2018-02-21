@@ -11,31 +11,20 @@
         <link href="~/Scripts/3rd/jquery.dataTables.min.css" rel="stylesheet" />
         <script src="~/Scripts/3rd/jquery-ui.js"></script>
         <link href="~/Scripts/3rd/jquery-ui.css" rel="stylesheet" />
+        <script src="~/Scripts/3rd/jquery.signalR.min.js"></script>
         <script src="~/Scripts/TCMB.js"></script>
         <script>
-            window.Table_ExchangeRates = null;
-
-            $(document).ready(function () {
-                TCMB.Handler.ExchangeRates();
-            });
-        </script>
-        <script>
-            $(function(){
-                $("#datepicker").datepicker({
-                    rtl: false,
-                    orientation: "left",
-                    autoclose: true,
-                    dateFormat: 'dd.mm.yy',
-                    onSelect: function (dateText) {
-                        alert(this.value);
-                    }
-                });
+            $(function () {
+                TCMB.Event.Onload();
             });
         </script>
     </head>
     <body>
-        <p>Date: <input type="text" id="datepicker"></p>
-        <table id="Table-ExchangeRates" class="display nowrap dataTable dtr-inline collapsed" cellspacing="0" width="100%"></table>
+    <div>
+        <div style="float: left;">Date: <input type="text" id="DatePicker-ExchangeRate"></div>
+        <div style="float: right;"><select id="Select-Language" onchange="TCMB.Handler.LanguageChange();"><option value="1">English</option><option value="2">Türkçe</option></select></div>
+    </div>
+    <table id="Table-ExchangeRates" class="display nowrap dataTable dtr-inline collapsed" cellspacing="0" width="100%"></table>
     </body>
     </html>
 }
