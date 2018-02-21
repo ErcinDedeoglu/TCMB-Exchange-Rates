@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -102,6 +103,9 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <None Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Default\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -111,8 +115,21 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TCMB.Database.Adapter\TCMB.Database.Adapter.csproj">
+      <Project>{f6323bcb-35bf-4b6f-9b31-e07a8aa566ca}</Project>
+      <Name>TCMB.Database.Adapter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TCMB.DTO\TCMB.DTO.csproj">
+      <Project>{69e04162-5427-4766-b359-99d42dd066ed}</Project>
+      <Name>TCMB.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TCMB.Helper\TCMB.Helper.csproj">
+      <Project>{a7c7483e-611a-4f5c-83ad-0874ff5a8000}</Project>
+      <Name>TCMB.Helper</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

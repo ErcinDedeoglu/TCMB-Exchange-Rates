@@ -42,5 +42,12 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Database\Changes\Change.0001.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Database\Changes\dontdelete" />
+    <None Include="Database\Inserts\dontdelete" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
